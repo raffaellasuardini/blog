@@ -1,0 +1,9 @@
+{% extends 'admin/master.html' %}
+{% block access_control %}
+{{ super() }}
+        <ul class="nav navbar-nav navbar-right">
+
+                <a class="btn btn-default btn-sm" href="{{ url_for('logout') }}" role="button" style="margin-top: 12px;">Logout</a>
+
+        </ul>
+{% endblock access_control %}

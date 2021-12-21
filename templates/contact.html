@@ -1,0 +1,86 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/contact-bg.jpg')}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Contact Me</h1>
+            <span class="subheading">Have questions? I have answers.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>Puoi scrivermi a <a href="mailto:suardini.raffaella@gmail.com">suardini.raffaella@gmail.com</a>.</p>
+
+        <!-- check if receive success flash message -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+           <div class="alert alert-success alert-dismissible show rounded" role="alert">
+              {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+
+
+        <form action="{{ url_for('contact')}}" method="post" name="sentMessage" id="contactForm" novalidate>
+          {{form.hidden_tag()}}
+          <div class="control-group">
+            <!-- after validation if data exist add class to make the label visible over data-->
+            {% if form.name.data %}
+            <div class="form-group floating-label-form-group controls floating-label-form-group-with-value ">
+            {% else %}
+            <div class="form-group floating-label-form-group controls ">
+            {% endif %}
+          {{wtf.form_field(form.name, placeholder="Nome", class_="form-control")}}
+            </div>
+          </div>
+          <div class="control-group">
+            {% if form.email.data %}
+            <div class="form-group floating-label-form-group controls floating-label-form-group-with-value ">
+            {% else %}
+            <div class="form-group floating-label-form-group controls ">
+            {% endif %}
+          {{wtf.form_field(form.email, placeholder="Email", class_="form-control")}}
+            </div>
+          </div>
+          <div class="control-group">
+            {% if form.message.data %}
+            <div class="form-group floating-label-form-group controls floating-label-form-group-with-value ">
+            {% else %}
+            <div class="form-group floating-label-form-group controls ">
+            {% endif %}
+          {{wtf.form_field(form.message, placeholder="Messaggio", class_="form-control", rows="5")}}
+            </div>
+          </div>
+          <small class="form-text text-muted">
+            <p>* Tutti i campi sono obbligatori</p>
+          </small>
+          {{form.submit(class_="btn btn-primary")}}
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+
+{% include "footer.html" %}
+{% endblock %}

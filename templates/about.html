@@ -1,0 +1,36 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url({{ url_for('static', filename='img/about-bg.jpg')}})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>About Me</h1>
+            <span class="subheading">This is what I do.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>Ciao, sono Raffaella.</p>
+        <p>Ho creato questo blog per condividere ciò che sto imparando nel corso della mia formazione.<br>
+          Il linguaggio di programmazione che al momento prediligo è <b>Python</b>, ho lavorato al progetto di laurea con <b>Django</b> e ora sto lavorando con <b>Flask</b> che ho utilizzato per la creazione di questo blog.</p>
+        <p></p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+{% include "footer.html" %}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('{{post.img_url}}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{post.title}}</h1>
+            <h2 class="subheading">{{post.subtitle}}</h2>
+            <span class="meta">Pubblicato il {{post.date.strftime("%d-%m-%Y")}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {{ post.body|safe }}
+
+          <hr>
+
+            <!-- add tags-->
+            <div class="col-lg-10 col-md-10 mx-auto">
+            <h3 class="">Tags:</h3>
+              {% for tag in all_tags%}
+            <a href="#" class="btn btn-outline-secondary rounded-pill mt-3" > {{tag.name}}</a>
+              {% endfor %}
+            </div>
+
+
+
+          </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+{% include "footer.html" %}
+{% endblock %}
