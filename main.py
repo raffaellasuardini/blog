@@ -160,12 +160,7 @@ admin = Admin(app, name='Blog', template_mode='bootstrap3', index_view=MyAdminIn
 admin.add_view(BlogPostAdminView(BlogPost, db.session))
 admin.add_view(UserView(User, db.session))
 admin.add_view(ModelView(Tag, db.session))
-daisy = User(id='1', name='daisy', email='daisy@email.com',
-             password=generate_password_hash(os.getenv('DAISY'), salt_length=8, method='pbkdf2:sha256'))
 
-
-db.session.add(daisy)
-db.session.commit()
 
 
 
