@@ -35,7 +35,7 @@ app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_SENDER')
 mail = Mail(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', "sqlite:///blog.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -161,11 +161,11 @@ admin.add_view(BlogPostAdminView(BlogPost, db.session))
 admin.add_view(UserView(User, db.session))
 admin.add_view(ModelView(Tag, db.session))
 daisy = User(id='1', name='daisy', email='daisy@email.com',
-             password=generate_password_hash('daisy', salt_length=8, method='pbkdf2:sha256'))
+             password=generate_password_hash(os.getenv('DAISY'), salt_length=8, method='pbkdf2:sha256'))
 
 
-# db.session.add(daisy)
-# db.session.commit()
+db.session.add(daisy)
+db.session.commit()
 
 
 
