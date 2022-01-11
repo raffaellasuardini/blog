@@ -125,8 +125,8 @@ class Comment(db.Model):
 
 class BlogPostAdminView(ModelView):
     form_overrides = dict(text=CKEditorField)
-    create_template = 'edit.html'
-    edit_template = 'edit.html'
+    create_template = 'admin/edit.html'
+    edit_template = 'admin/edit.html'
     column_exclude_list = ['body', 'subtitle', 'img_url', ]
 
     def is_accessible(self):
