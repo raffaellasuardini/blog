@@ -23,7 +23,8 @@ Bootstrap(app)
 # ckeditor
 app.config['CKEDITOR_SERVE_LOCAL'] = True
 app.config['CKEDITOR_HEIGHT'] = 400
-app.config['CKEDITOR_PKG_TYPE'] = 'standard'
+app.config['CKEDITOR_PKG_TYPE'] = 'full'
+app.config['CKEDITOR_CODE_THEME'] = 'rainbow'
 app.config['CKEDITOR_ENABLE_CODESNIPPET'] = True
 ckeditor = CKEditor(app)
 
@@ -124,7 +125,7 @@ class Comment(db.Model):
 
 
 class BlogPostAdminView(ModelView):
-    form_overrides = dict(text=CKEditorField)
+    form_overrides = dict(body=CKEditorField)
     create_template = 'admin/edit.html'
     edit_template = 'admin/edit.html'
     column_exclude_list = ['body', 'subtitle', 'img_url', ]
